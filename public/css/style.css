@@ -1,0 +1,43 @@
+body {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+nav a {
+  transition: all 0.3s ease;
+}
+@media print {
+  form,
+  nav,
+  .print-hide {
+    display: none;
+  }
+
+  body {
+    padding: 20px;
+    color: black;
+  
+  }
+}
+@keyframes slideIn {
+      0% { transform: translateX(100%); opacity: 0; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+
+    .slide-image {
+      animation: slideIn 0.6s ease-in-out;
+    }
+
+    .dot {
+      height: 10px;
+      width: 10px;
+      margin: 0 4px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.3s;
+    }
+
+    .dot.active {
+      background-color: #22c55e; /* Tailwind green-500 */
+    }
+

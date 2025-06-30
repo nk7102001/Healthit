@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - Healthit</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-[#1a1a1a] min-h-screen flex flex-col">
+
+  <!-- ✅ Navbar -->
+  <%- include('../partials/navbar') %>
+
+  <!-- ✅ Main Section -->
+  <main class="flex-1 pt-24 px-4 pb-20 w-full max-w-xl mx-auto">
+    <h1 class="text-3xl font-bold text-green-600 mb-6 text-center">📬 Contact Us</h1>
+
+    <% if (message) { %>
+      <div class="mb-4 text-center font-medium text-green-700"><%= message %></div>
+    <% } %>
+
+    <form method="POST" action="/contact" class="space-y-4">
+      <div>
+        <label class="block font-medium">Name</label>
+        <input type="text" name="name" required class="w-full border px-4 py-2 rounded" />
+      </div>
+      <div>
+        <label class="block font-medium">Email</label>
+        <input type="email" name="email" required class="w-full border px-4 py-2 rounded" />
+      </div>
+      <div>
+        <label class="block font-medium">Message</label>
+        <textarea name="message" rows="5" required class="w-full border px-4 py-2 rounded"></textarea>
+      </div>
+      <button type="submit" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">Send Message</button>
+    </form>
+  </main>
+
+  <!-- ✅ Footer -->
+  <%- include('../partials/footer') %>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Profile - Healthit</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-[#1a1a1a] min-h-screen flex flex-col">
+
+  <!-- ✅ Navbar for logged-in users -->
+  <%- include('../partials/navbar') %>
+
+  <!-- ✅ Main Content -->
+  <main class="flex-1 pt-24 px-6 pb-12">
+    <div class="max-w-xl mx-auto bg-green-50 p-6 rounded-lg shadow-md relative">
+
+      <!-- Top-right links -->
+      <div class="absolute top-4 right-6 text-right space-y-1">
+        <a href="/profile/edit" class="text-green-600 text-sm hover:underline block">✏️ Edit Profile</a>
+        <a href="/profile/password" class="text-green-600 text-sm hover:underline block">🔐 Change Password</a>
+      </div>
+
+      <h1 class="text-3xl font-bold text-green-600 mb-4">👤 Your Profile</h1>
+
+      <div class="space-y-3">
+        <p><span class="font-semibold text-gray-700">Full Name:</span> <%= user.name %></p>
+        <p><span class="font-semibold text-gray-700">Email:</span> <%= user.email %></p>
+        <p><span class="font-semibold text-gray-700">Joined On:</span> <%= user.createdAt ? user.createdAt.toDateString() : 'N/A' %></p>
+      </div>
+
+      <div class="mt-6 text-right">
+        <a href="/dashboard" class="text-green-600 hover:underline">← Back to Dashboard</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ✅ Footer -->
+  <%- include('../partials/footer') %>
+</body>
+</html>

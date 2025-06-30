@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nearby Hospitals - Healthit</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    #loadingSpinner {
+      display: none;
+    }
+  </style>
+</head>
+<body class="bg-white text-[#1a1a1a] min-h-screen flex flex-col">
+
+  <!-- ✅ Navbar -->
+  <%- include('../partials/navbar') %>
+
+  <!-- ✅ Main Section -->
+  <main class="min-h-screen flex-1 pt-24 px-4 pb-20 max-w-4xl mx-auto w-full">
+    <h1 class="text-3xl font-bold text-green-600 mb-4">🏥 Find Nearby Hospitals & Medical Stores</h1>
+
+    <!-- Search Form -->
+    <form action="/nearby" method="POST" class="flex flex-col sm:flex-row gap-4 mb-6">
+      <input
+        type="text"
+        name="location"
+        placeholder="Enter your city or location"
+        required
+        class="flex-1 px-4 py-2 border rounded w-full"
+      />
+
+      <select name="type" class="px-4 py-2 border rounded w-full sm:w-auto">
+        <option value="hospital">Hospital</option>
+        <option value="pharmacy">Medical Store</option>
+      </select>
+
+      <button
+        type="submit"
+        onclick="showSpinner()"
+        class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition w-full sm:w-auto"
+      >
+        Search
+      </button>
+    </form>
+
+    <!-- Spinner -->
+    <div id="loadingSpinner" class="text-center my-4">
+      <div class="animate-spin h-6 w-6 border-4 border-green-600 border-t-transparent rounded-full mx-auto"></div>
+      <p class="mt-2 text-sm text-gray-600">Loading nearby services...</p>
+    </div>
+
+    <!-- Results -->
+    <% if (hospitals && hospitals.length > 0) { %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <% hospitals.forEach(h => { %>
+          <div class="bg-green-50 p-4 rounded-lg shadow hover:shadow-md transition">
+            <div class="flex items-center gap-3 mb-2">
+              <img src="/images/hospital-icon.png" alt="Hospital Icon" class="w-6 h-6" />
+              <h3 class="text-lg font-semibold text-green-700"><%= h.name %></h3>
+            </div>
+            <p class="text-sm text-gray-700"><%= h.address %></p>
+          </div>
+        <% }) %>
+      </div>
+    <% } else if (hospitals) { %>
+      <p class="text-red-600 text-center mt-8">❌ No nearby services found. Try a different location.</p>
+    <% } %>
+  </main>
+
+  <!-- ✅ Footer -->
+  <%- include('../partials/footer') %>
+
+  <script>
+    function showSpinner() {
+      document.getElementById('loadingSpinner').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add New Blog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white px-6 py-10 text-[#1a1a1a]">
+  <div class="max-w-3xl mx-auto">
+    <h1 class="text-3xl font-bold text-green-600 mb-6">✍️ Add New Blog</h1>
+
+    <% if (message) { %>
+      <div class="mb-4 text-center font-semibold text-green-700"><%= message %></div>
+    <% } %>
+
+    <form method="POST" action="/blog/add" class="space-y-4">
+      <div>
+        <label class="block font-medium">Title</label>
+        <input type="text" name="title" required class="w-full border px-4 py-2 rounded" />
+      </div>
+
+      <div>
+        <label class="block font-medium">Slug (URL text)</label>
+        <input type="text" name="slug" required pattern="^(?!add$).+" title="Slug cannot be 'add'" />
+      </div>
+
+      <div>
+        <label class="block font-medium">Summary</label>
+        <textarea name="summary" rows="2" required class="w-full border px-4 py-2 rounded"></textarea>
+      </div>
+
+      <div>
+        <label class="block font-medium">Image Path</label>
+        <input type="text" name="image" value="/images/blog1.jpg" class="w-full border px-4 py-2 rounded" />
+      </div>
+
+      <div>
+        <label class="block font-medium">Full Content</label>
+        <textarea name="content" rows="8" required class="w-full border px-4 py-2 rounded"></textarea>
+      </div>
+
+      <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
+        ➕ Add Blog
+      </button>
+    </form>
+
+    <div class="mt-6 text-right">
+      <a href="/blog" class="text-green-600 hover:underline">← Back to Blog</a>
+    </div>
+  </div>
+</body>
+</html>

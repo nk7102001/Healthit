@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nearby Healthcare - Healthit</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #22c55e;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body class="bg-white text-[#1a1a1a] px-6 py-10">
+
+  <div class="max-w-3xl mx-auto">
+    <h1 class="text-3xl font-bold text-green-600 mb-6 text-center">🏥 Public Nearby Search</h1>
+
+    <form method="POST" action="/features/nearby" class="space-y-4 mb-8">
+      <div>
+        <label class="block font-medium">Enter City or Location</label>
+        <input type="text" name="location" required class="w-full px-4 py-2 border rounded" placeholder="e.g., Delhi, Mumbai" />
+      </div>
+
+      <div>
+        <label class="block font-medium mb-1">Type</label>
+        <select name="type" class="w-full border px-4 py-2 rounded">
+          <option value="hospital">🏥 Hospitals</option>
+          <option value="pharmacy">💊 Medical Stores</option>
+        </select>
+      </div>
+
+      <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition">
+        🔍 Search Nearby
+      </button>
+    </form>
+
+    <% if (hospitals && hospitals.length > 0) { %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <% hospitals.forEach(h => { %>
+          <div class="border p-4 rounded shadow hover:shadow-md transition">
+            <h3 class="text-lg font-semibold text-green-700"><%= h.name %></h3>
+            <p class="text-sm text-gray-700"><%= h.address %></p>
+          </div>
+        <% }) %>
+      </div>
+    <% } else if (hospitals && hospitals.length === 0) { %>
+      <p class="text-center text-red-500 font-medium mt-4">❌ No results found for this location.</p>
+    <% } %>
+
+    <div class="mt-6 text-center">
+      <a href="/features" class="text-green-600 hover:underline">← Back to Features</a>
+    </div>
+  </div>
+<%- include('../partials/footer') %>
+</body>
+</html>

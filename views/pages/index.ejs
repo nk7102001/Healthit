@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Healthit - Your Fitness Partner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="bg-white text-[#1a1a1a] flex flex-col min-h-screen">
+
+  <!-- ✅ Navbar -->
+  <%- include('../partials/navbar') %>
+
+  <!-- ✅ Main Section -->
+  <main class="flex-grow">
+    <section class="flex flex-col-reverse md:flex-row items-center justify-between pt-24 px-4 sm:px-6 md:px-12">
+      
+      <!-- ✅ Left Text -->
+      <div class="w-full md:w-1/2 space-y-6 text-center md:text-left">
+        <h1 class="text-4xl md:text-5xl font-bold text-green-600 leading-snug">Your AI Health & Fitness Partner</h1>
+        <p class="text-lg text-gray-700">
+          Get personalized diet plans, track your progress, calculate BMI, and access health tips with AI-powered guidance — all in one place.
+        </p>
+        <div class="flex gap-4 justify-center md:justify-start flex-wrap">
+          <a href="/signup" class="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition">Get Started</a>
+          <a href="/features" class="px-6 py-2 border border-green-600 text-green-600 rounded hover:bg-green-600 hover:text-white transition">Explore Features</a>
+        </div>
+      </div>
+
+      <!-- ✅ Right Image Slider -->
+     <!-- ✅ Right Image Slider -->
+<div class="w-full md:w-1/2 flex justify-center md:justify-end mb-10 md:mb-0">
+  <div class="relative w-full max-w-[500px] h-[280px] sm:h-[350px] md:h-[400px] overflow-hidden rounded-lg shadow-md">
+
+    <!-- Image -->
+    <img id="slider-image" src="/images/slide1.jpg" class="absolute w-full h-full object-cover slide-image" alt="Slide" />
+
+    <!-- Dots on image -->
+    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
+</div>
+
+    </section>
+  </main>
+
+  <!-- ✅ Footer -->
+  <%- include('../partials/footer') %>
+
+  
+   
+ 
+  <script src="/js/main.js"></script>
+
+</body>
+</html>

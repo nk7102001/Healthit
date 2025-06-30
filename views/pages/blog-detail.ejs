@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= blog.title %></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white px-6 py-10 text-[#1a1a1a]">
+  <div class="max-w-3xl mx-auto">
+    <h1 class="text-3xl font-bold text-green-600 mb-4"><%= blog.title %></h1>
+    <img src="<%= blog.image %>" alt="Blog Image" class="w-full h-60 object-cover rounded mb-6" />
+    <p class="text-gray-800 text-base leading-relaxed whitespace-pre-wrap"><%= blog.content %></p>
+
+    <div class="mt-8 text-right">
+      <a href="/blog" class="text-green-600 hover:underline">← Back to Blog</a>
+    </div>
+  </div>
+</body>
+</html>
