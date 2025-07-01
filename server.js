@@ -263,20 +263,20 @@ app.get('/bmi-history', requireAuth, async (req, res) => {
 });
 
 // AI Plan Routes
-// AI Plan Routes
-app.get('/ai-plan', requireAuth, (req, res) => {
-  res.render('pages/ai-plan', { plan: null, user: req.user });
+app.get('/ai-plan', async (req, res) => {
+  const user = await getUserFromToken(req); // For navbar
+  res.render('pages/ai-plan', { plan: null, user });
 });
 
-// POST AI Plan using DeepSeek via OpenRouter
-app.post("/ai-plan", requireAuth, async (req, res) => {
+app.post('/ai-plan', async (req, res) => {
   const { goal, age, gender, activity, diet } = req.body;
+  const user = await getUserFromToken(req);
 
   const prompt = `Generate a detailed, personalized Indian vegetarian diet and workout plan for a ${age}-year-old ${gender} whose goal is to ${goal} weight. Activity level: ${activity}. Diet preference: ${diet}. Structure the response with clear headings and bullet points.`;
 
   try {
     const response = await axios.post("https://openrouter.ai/api/v1/chat/completions", {
-      model: "deepseek/deepseek-r1-0528-qwen3-8b:free",  // ✅ make sure this is enabled in OpenRouter settings
+      model: "deepseek/deepseek-r1-0528-qwen3-8b:free",
       messages: [
         { role: "system", content: "You are a professional fitness and nutrition expert." },
         { role: "user", content: prompt }
@@ -284,33 +284,33 @@ app.post("/ai-plan", requireAuth, async (req, res) => {
     }, {
       headers: {
         Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-        "HTTP-Referer": "http://localhost:3000",  // ✅ must match OpenRouter allowed referer
-        "X-Title": "Healthit AI Plan",
+        "HTTP-Referer": "http://localhost:3000",
         "Content-Type": "application/json"
       }
     });
 
-    const plan = response.data?.choices?.[0]?.message?.content;
+    const plan = response.data.choices[0].message.content;
 
-    await AIPlan.create({
-      userId: req.user._id,
-      goal,
-      age,
-      gender,
-      activity,
-      diet,
-      generatedPlan: plan
-    });
+    // 🔒 Save to DB only if user is logged in
+    if (user) {
+      await AIPlan.create({
+        userId: user._id,
+        goal,
+        age,
+        gender,
+        activity,
+        diet,
+        generatedPlan: plan
+      });
+    }
 
-    res.render("pages/ai-plan", { plan, user: req.user });
+    res.render('pages/ai-plan', { plan, user });
   } catch (err) {
     console.error("DeepSeek API error:", err.response?.data || err.message);
-    res.render("pages/ai-plan", {
-      plan: "❌ Failed to generate plan. Please try again.",
-      user: req.user
-    });
+    res.render('pages/ai-plan', { plan: "❌ Failed to generate plan. Please try again.", user });
   }
 });
+
 
 
 

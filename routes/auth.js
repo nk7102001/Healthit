@@ -1,10 +1,11 @@
-// Routes for auth
-// routes/auth.js
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+
+// Signup POST Route
+// routes/auth.js
 
 // Signup POST Route
 router.post('/signup', async (req, res) => {
@@ -20,13 +21,12 @@ router.post('/signup', async (req, res) => {
       });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-
     const newUser = await User.create({
-      name,
-      email,
-      password: hashedPassword
-    });
+  name,
+  email,
+  password // let Mongoose hook hash it
+});
+
 
     const token = jwt.sign(
       { userId: newUser._id },
@@ -48,42 +48,44 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-module.exports = router;
-
-// POST /login (updated with cookie)
+// Login POST Route
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email: email.toLowerCase() });
-    if (!user) return res.status(400).send('User not found');
-
+    if (!user) {
+      console.log("❌ User not found");
+      return res.status(400).send('User not found');
+    }
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(401).send('Invalid credentials');
+
+    if (!isMatch) {
+      return res.status(401).send('Invalid credentials');
+    }
 
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
       expiresIn: '1d'
     });
 
-    // ✅ Set auth token in cookie
     res.cookie('token', token, {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000 // 1 day
     });
 
-    // ✅ Redirect to homepage after login (not dashboard)
+    console.log("🎉 Login successful");
     res.redirect('/');
   } catch (err) {
-    console.error(err);
+    console.error("🔥 Server error:", err);
     res.status(500).send('Server error');
   }
 });
 
 
-// GET /logout
+// Logout GET Route
 router.get('/logout', (req, res) => {
   res.clearCookie('token');
   res.redirect('/');
 });
 
-
+// ✅ Final export (only once)
 module.exports = router;
