@@ -4,10 +4,7 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-// Signup POST Route
-// routes/auth.js
 
-// Signup POST Route
 router.post('/signup', async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -24,7 +21,7 @@ router.post('/signup', async (req, res) => {
     const newUser = await User.create({
   name,
   email,
-  password // let Mongoose hook hash it
+  password 
 });
 
 
@@ -36,7 +33,7 @@ router.post('/signup', async (req, res) => {
 
     res.cookie('token', token, { httpOnly: true });
 
-    // ✅ Redirect to home after signup
+   
     res.redirect('/');
 
   } catch (err) {
@@ -48,7 +45,7 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-// Login POST Route
+
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -69,7 +66,7 @@ router.post('/login', async (req, res) => {
 
     res.cookie('token', token, {
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000 // 1 day
+      maxAge: 24 * 60 * 60 * 1000 
     });
 
     console.log("🎉 Login successful");
@@ -81,11 +78,10 @@ router.post('/login', async (req, res) => {
 });
 
 
-// Logout GET Route
 router.get('/logout', (req, res) => {
   res.clearCookie('token');
   res.redirect('/');
 });
 
-// ✅ Final export (only once)
+
 module.exports = router;
