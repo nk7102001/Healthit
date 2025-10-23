@@ -38,6 +38,6 @@ nav a {
     }
 
     .dot.active {
-      background-color: #22c55e; /* Tailwind green-500 */
+      background-color: #22c55e; 
     }
 
