@@ -6,8 +6,8 @@ const blogSchema = new mongoose.Schema({
   type: String,
   required: true,
   unique: true,
-  lowercase: true,   // ✅ auto-lowercase
-  trim: true         // ✅ auto-trim
+  lowercase: true,   
+  trim: true        
 },
   summary: String,
   content: String,
