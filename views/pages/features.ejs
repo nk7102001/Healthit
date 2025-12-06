@@ -1,46 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Features - Healthit</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-white text-[#1a1a1a] min-h-screen flex flex-col">
+<% layout("layouts/boilerplate") %>
+<% title = "Features - Healthit" %>
 
-  <!-- ✅ Navbar -->
-  <%- include('../partials/navbar') %>
+<!-- Main Section -->
+<main class="flex-1 px-4 py-20 max-w-6xl mx-auto w-full">
 
-  <!-- ✅ Main Section -->
-  <main class="flex-1 px-4 py-20 max-w-6xl mx-auto w-full">
-    <h1 class="text-4xl font-bold text-green-600 mb-6">🌟 Healthit Features</h1>
+  <h1 class="text-4xl font-bold text-green-600 mb-6">
+    🌟 Healthit Features
+  </h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <!-- BMI Calculator -->
-      <div class="bg-green-50 p-6 rounded-lg shadow hover:shadow-lg transition">
-        <h2 class="text-2xl font-semibold text-green-700">BMI Calculator</h2>
-        <p class="mt-2 text-gray-700">Check your body mass index quickly and easily.</p>
-        <a href="/bmi" class="inline-block mt-4 text-green-600 font-medium hover:underline">Try BMI Calculator →</a>
-      </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-      <!-- Nearby Hospitals -->
-      <div class="bg-green-50 p-6 rounded-lg shadow hover:shadow-lg transition">
-        <h2 class="text-2xl font-semibold text-green-700">Nearby Hospitals</h2>
-        <p class="mt-2 text-gray-700">Find hospitals and medical stores near your location.</p>
-        <a href="/nearby" class="inline-block mt-4 text-green-600 font-medium hover:underline">Find Nearby Services →</a>
-      </div>
-
-      <!-- Home Exercises -->
-      <div class="bg-green-50 p-6 rounded-lg shadow hover:shadow-lg transition">
-        <h2 class="text-2xl font-semibold text-green-700">Home Exercises</h2>
-        <p class="mt-2 text-gray-700">Do simple guided workouts at home, anytime.</p>
-        <a href="/exercises" class="inline-block mt-4 text-green-600 font-medium hover:underline">View Exercises →</a>
-      </div>
+    <!-- BMI Calculator -->
+    <div class="bg-green-50 p-6 rounded-lg shadow hover:shadow-lg transition">
+      <h2 class="text-2xl font-semibold text-green-700">BMI Calculator</h2>
+      <p class="mt-2 text-gray-700">Check your body mass index quickly and easily.</p>
+      <a href="/bmi" class="inline-block mt-4 text-green-600 font-medium hover:underline">
+        Try BMI Calculator →
+      </a>
     </div>
-  </main>
 
-  <!-- ✅ Footer -->
-  <%- include('../partials/footer') %>
+    <!-- Nearby Hospitals -->
+    <div class="bg-green-50 p-6 rounded-lg shadow hover:shadow-lg transition">
+      <h2 class="text-2xl font-semibold text-green-700">Nearby Hospitals</h2>
+      <p class="mt-2 text-gray-700">Find hospitals and medical stores near your location.</p>
+      <a href="/nearby" class="inline-block mt-4 text-green-600 font-medium hover:underline">
+        Find Nearby Services →
+      </a>
+    </div>
 
-</body>
-</html>
+    <!-- Home Exercises -->
+    <div class="bg-green-50 p-6 rounded-lg shadow hover:shadow-lg transition">
+      <h2 class="text-2xl font-semibold text-green-700">Home Exercises</h2>
+      <p class="mt-2 text-gray-700">Do simple guided workouts at home, anytime.</p>
+      <a href="/exercises" class="inline-block mt-4 text-green-600 font-medium hover:underline">
+        View Exercises →
+      </a>
+    </div>
+
+  </div>
+
+</main>

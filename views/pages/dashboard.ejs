@@ -1,44 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard - Healthit</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="/css/style.css" />
-</head>
-<body class="bg-white text-[#1a1a1a] min-h-screen flex flex-col">
+<% layout("layouts/boilerplate") %>
+<% title = "Dashboard - Healthit" %>
 
-  <!-- ✅ Navbar -->
-  <%- include('../partials/navbar') %>
+<main class="flex-1 px-6 py-24 max-w-6xl mx-auto w-full">
 
-  <!-- ✅ Main Content -->
-  <main class="flex-1 px-6 py-24 max-w-6xl mx-auto w-full">
-    <h2 class="text-3xl font-bold text-green-600 mb-6">Welcome, <%= user.name %>! 👋</h2>
+  <h2 class="text-3xl font-bold text-green-600 mb-6">
+    Welcome, <%= user.name %>! 👋
+  </h2>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      <!-- Profile -->
-      <a href="/profile" class="bg-green-100 hover:bg-green-200 transition p-6 rounded-lg shadow">
-        <h3 class="text-xl font-semibold text-green-700">My Profile</h3>
-        <p class="mt-2 text-sm text-gray-600">View or update your personal details</p>
-      </a>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 
-      <!-- BMI History -->
-      <a href="/bmi-history" class="bg-green-100 hover:bg-green-200 transition p-6 rounded-lg shadow">
-        <h3 class="text-xl font-semibold text-green-700">BMI History</h3>
-        <p class="mt-2 text-sm text-gray-600">Track your BMI record over time</p>
-      </a>
+    <!-- Profile -->
+    <a 
+      href="/profile" 
+      class="bg-green-100 hover:bg-green-200 transition p-6 rounded-lg shadow">
+      <h3 class="text-xl font-semibold text-green-700">My Profile</h3>
+      <p class="mt-2 text-sm text-gray-600">
+        View or update your personal details
+      </p>
+    </a>
 
-      <!-- AI Plan History -->
-      <a href="/plans" class="bg-green-100 hover:bg-green-200 transition p-6 rounded-lg shadow">
-        <h3 class="text-xl font-semibold text-green-700">AI Plan History</h3>
-        <p class="mt-2 text-sm text-gray-600">View your AI-generated plans</p>
-      </a>
-    </div>
-  </main>
+    <!-- BMI History -->
+    <a 
+      href="/bmi/history" 
+      class="bg-green-100 hover:bg-green-200 transition p-6 rounded-lg shadow">
+      <h3 class="text-xl font-semibold text-green-700">BMI History</h3>
+      <p class="mt-2 text-sm text-gray-600">
+        Track your BMI record over time
+      </p>
+    </a>
 
-  <!-- ✅ Footer -->
-  <%- include('../partials/footer') %>
+    <!-- AI Plan History -->
+    <a 
+      href="/plans" 
+      class="bg-green-100 hover:bg-green-200 transition p-6 rounded-lg shadow">
+      <h3 class="text-xl font-semibold text-green-700">AI Plan History</h3>
+      <p class="mt-2 text-sm text-gray-600">
+        View your AI-generated plans
+      </p>
+    </a>
 
-</body>
-</html>
+  </div>
+
+</main>

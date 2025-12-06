@@ -1,42 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BMI Calculator - Healthit</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-white text-[#1a1a1a]">
+<% layout("layouts/boilerplate") %>
+<% title = "BMI Calculator - Healthit" %>
 
-  <!-- ✅ Navbar Include -->
-  <%- include('../partials/navbar') %>
+<section class="min-h-screen pt-24 px-4 max-w-xl mx-auto">
 
-  <section class="min-h-screen pt-24 px-4 max-w-xl mx-auto">
-    <h1 class="text-3xl font-bold text-green-600 mb-6">📏 BMI Calculator</h1>
+  <h1 class="text-3xl font-bold text-green-600 mb-6">📏 BMI Calculator</h1>
 
-    <form action="/bmi" method="POST" class="space-y-4 bg-green-50 p-6 rounded-lg shadow">
-      <div>
-        <label for="height" class="block font-medium mb-1">Height (cm):</label>
-        <input type="number" name="height" id="height" required
-               class="w-full border px-4 py-2 rounded" placeholder="e.g., 170">
-      </div>
-      <div>
-        <label for="weight" class="block font-medium mb-1">Weight (kg):</label>
-        <input type="number" name="weight" id="weight" required
-               class="w-full border px-4 py-2 rounded" placeholder="e.g., 60">
-      </div>
-      <button type="submit" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition">
-        Calculate BMI
-      </button>
-    </form>
+  <form action="/bmi" method="POST" class="space-y-4 bg-green-50 p-6 rounded-lg shadow">
 
-    <% if (bmi && status) { %>
-      <div class="mt-6 p-4 border rounded bg-white shadow text-center">
-        <h2 class="text-xl font-semibold text-green-700">Your BMI: <%= bmi %></h2>
-        <p class="text-gray-700">Status: <strong><%= status %></strong></p>
-      </div>
-    <% } %>
-  </section>
-<%- include('../partials/footer') %>
-</body>
-</html>
+    <div>
+      <label for="height" class="block font-medium mb-1">Height (cm):</label>
+      <input 
+        type="number" 
+        name="height" 
+        id="height" 
+        required
+        class="w-full border px-4 py-2 rounded" 
+        placeholder="e.g., 170">
+    </div>
+
+    <div>
+      <label for="weight" class="block font-medium mb-1">Weight (kg):</label>
+      <input 
+        type="number" 
+        name="weight" 
+        id="weight" 
+        required
+        class="w-full border px-4 py-2 rounded" 
+        placeholder="e.g., 60">
+    </div>
+
+    <button 
+      type="submit" 
+      class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition">
+      Calculate BMI
+    </button>
+
+  </form>
+
+  <% if (bmi && status) { %>
+    <div class="mt-6 p-4 border rounded bg-white shadow text-center">
+      <h2 class="text-xl font-semibold text-green-700">Your BMI: <%= bmi %></h2>
+      <p class="text-gray-700">
+        Status: <strong><%= status %></strong>
+      </p>
+    </div>
+  <% } %>
+
+</section>

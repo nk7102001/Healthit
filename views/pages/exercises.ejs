@@ -1,47 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Home Exercises - Healthit</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-white text-[#1a1a1a] min-h-screen flex flex-col">
+<% layout("layouts/boilerplate") %>
+<% title = "Home Exercises - Healthit" %>
 
-  <!-- ✅ Navbar Include -->
-  <%- include('../partials/navbar') %>
+<main class="flex-1 max-w-6xl mx-auto px-4 pt-24 pb-10 w-full">
+  
+  <h1 class="text-3xl font-bold text-green-600 mb-6">
+    🏋️ Workout Library
+  </h1>
 
-  <!-- ✅ Main Content -->
-  <main class="flex-1 max-w-6xl mx-auto px-4 pt-24 pb-10 w-full">
-    <h1 class="text-3xl font-bold text-green-600 mb-6">🏋️ Workout Library</h1>
+  <!-- Filter Dropdown -->
+  <div class="mb-6">
+    <select 
+      id="partFilter" 
+      class="border px-4 py-2 rounded w-full max-w-xs">
+      <option value="All">All Body Parts</option>
+      <option value="Upper Body">Upper Body</option>
+      <option value="Lower Body">Lower Body</option>
+      <option value="Core">Core</option>
+      <option value="Cardio">Cardio</option>
+    </select>
+  </div>
 
-    <!-- Filter Dropdown -->
-    <div class="mb-6">
-      <select id="partFilter" class="border px-4 py-2 rounded w-full max-w-xs">
-        <option value="All">All Body Parts</option>
-        <option value="Upper Body">Upper Body</option>
-        <option value="Lower Body">Lower Body</option>
-        <option value="Core">Core</option>
-        <option value="Cardio">Cardio</option>
-      </select>
-    </div>
+  <!-- JS Injected Exercises -->
+  <div 
+    id="exerciseList" 
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <!-- JS will inject cards -->
+  </div>
 
-    <!-- Exercise Cards will be injected via JS -->
-    <div id="exerciseList" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      <!-- JS will inject cards -->
-    </div>
-  </main>
+</main>
 
-  <!-- ✅ Footer Include -->
-  <%- include('../partials/footer') %>
+<!-- JS Scripts -->
+<script src="/js/exercises.js"></script>
 
-  <!-- JS Scripts -->
-  <script src="/js/exercises.js"></script>
-  <script>
-    function toggleMenu() {
-      document.getElementById("mobileMenu").classList.toggle("hidden");
-    }
-  </script>
-
-</body>
-</html>
+<script>
+  function toggleMenu() {
+    document.getElementById("mobileMenu").classList.toggle("hidden");
+  }
+</script>
