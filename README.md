@@ -1,9 +1,12 @@
-# Healthit – Fitness & Health Web Application
+# Healthit – Full Stack Health & Fitness Web Application
 
-Healthit is a full-stack fitness and health management web application
+Healthit is a full-stack health and fitness management web application
 built using the MERN stack. The project focuses on BMI tracking,
-AI-powered diet and workout planning, and secure user authentication.
-It is designed to simulate a real-world production-style application.
+AI-powered diet and workout planning, and secure user authentication
+with role-based access control.  
+It is designed to simulate a real-world, production-style application.
+
+🔗 **Live Demo:** https://healthit-qp1v.onrender.com
 
 ---
 
@@ -31,14 +34,14 @@ It is designed to simulate a real-world production-style application.
 
 ## 🚀 Features
 
-- User authentication (Login / Signup)
+- Secure user authentication (Login / Signup)
 - BMI calculator with BMI history tracking
-- AI-based personalized diet & workout plans  
-  (Using **DeepSeek API via OpenRouter**)
+- AI-based personalized diet and workout plans  
+  (Integrated using **DeepSeek API via OpenRouter**)
 - Role-based access control (User / Admin)
-- Admin panel for blog management
-- Responsive UI (Desktop & Mobile)
-- Secure REST APIs
+- Admin panel for health blog management
+- Fully responsive UI (Desktop & Mobile)
+- Clean and secure REST APIs
 
 ---
 
@@ -47,29 +50,33 @@ It is designed to simulate a real-world production-style application.
 ### Frontend
 - HTML
 - CSS
+- JavaScript (ES6)
 - Tailwind CSS
-- JavaScript
 
 ### Backend
 - Node.js
 - Express.js
+- REST APIs
+- MVC Architecture
 
 ### Database
 - MongoDB
+- MongoDB Atlas
+- Mongoose
 
 ### Tools & Deployment
 - Git & GitHub
+- Postman
 - Render
-- MongoDB Atlas
 
 ---
 
 ## ⚙️ How This Project Works
 
-1. Users register and log in using secure authentication
+1. Users register and log in using secure JWT-based authentication
 2. After login, users can calculate BMI and store BMI history
 3. The AI module generates personalized diet and workout plans
-4. Admin users can create, update, and delete health blogs
+4. Admin users manage blogs using role-based authorization
 5. All application data is securely stored in MongoDB
 
 ---
@@ -83,14 +90,13 @@ It is designed to simulate a real-world production-style application.
 /public
 server.js
 
-
 ---
 
 ## 📚 What I Learned
 
-- Building REST APIs using Node.js and Express
+- Building scalable REST APIs using Node.js and Express
 - Implementing authentication and role-based authorization
-- Designing MongoDB schemas and handling data securely
-- Structuring a scalable full-stack application
-- Debugging and deploying applications on cloud platforms
-- Integrating AI APIs into real-world projects
+- Designing MongoDB schemas and handling real-world data
+- Structuring large full-stack applications using MVC architecture
+- Debugging issues and deploying applications on cloud platforms
+- Integrating AI APIs into production-style web applications
