@@ -1,0 +1,97 @@
+<% layout("layouts/boilerplate") %>
+<% title = "BMI History - Healthit" %>
+
+
+<div class="page-hero">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="page-hero-title">📊 BMI History</h1>
+    <p class="page-hero-subtitle">Track your body measurements over time</p>
+  </div>
+</div>
+
+<main class="flex-1 px-6 py-12 w-full max-w-4xl mx-auto">
+
+  <% if (records.length === 0) { %>
+    <div class="text-center py-16">
+      <div style="font-size:3rem;margin-bottom:1rem;">📋</div>
+      <h3 style="font-family:'Sora',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:.5rem;">No records yet</h3>
+      <p style="color:var(--gray-600);margin-bottom:1.5rem;">Calculate your BMI to start tracking your progress.</p>
+      <a href="/bmi" class="btn btn-primary">Calculate BMI →</a>
+    </div>
+  <% } else { %>
+
+    <div class="flex items-center justify-between mb-6">
+      <h2 style="font-family:'Sora',sans-serif;font-weight:700;"><%= records.length %> Record<%= records.length > 1 ? 's' : '' %> Found</h2>
+      <a href="/bmi" class="btn btn-primary btn-sm">+ New BMI Check</a>
+    </div>
+
+    <div class="space-y-4">
+      <% records.forEach((r, i) => { %>
+        <%
+          let statusColor = 'var(--green-600)'; let statusBg = 'var(--green-50)'; let statusBorder = 'var(--green-200)';
+          if (r.status === 'Underweight') { statusColor='#3b82f6'; statusBg='#eff6ff'; statusBorder='#bfdbfe'; }
+          else if (r.status === 'Overweight') { statusColor='#f59e0b'; statusBg='#fffbeb'; statusBorder='#fde68a'; }
+          else if (r.status === 'Obese') { statusColor='#dc2626'; statusBg='#fef2f2'; statusBorder='#fecaca'; }
+        %>
+        <div class="record-card" style="animation-delay:<%= i * 0.08 %>s">
+          <div class="flex items-center justify-between flex-wrap gap-3" style="padding-left:1rem;">
+            <div>
+              <p style="font-size:.8rem;color:var(--gray-600);margin-bottom:.3rem;">📅 <%= r.createdAt.toDateString() %></p>
+              <p style="font-size:.95rem;color:var(--dark);">
+                Height: <strong><%= r.height %> cm</strong> &nbsp;|&nbsp; Weight: <strong><%= r.weight %> kg</strong>
+              </p>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-family:'Sora',sans-serif;font-size:1.6rem;font-weight:800;color:var(--green-600);"><%= r.bmi %></div>
+              <span style="display:inline-block;padding:.2rem .75rem;border-radius:99px;font-size:.78rem;font-weight:700;background:<%= statusBg %>;color:<%= statusColor %>;border:1px solid <%= statusBorder %>"><%= r.status %></span>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+
+<main class="flex-1 pt-24 px-6 pb-12 w-full max-w-4xl mx-auto">
+
+  <h1 class="text-3xl font-bold text-green-600 mb-6">
+    📊 Your BMI Records
+  </h1>
+
+  <% if (records.length === 0) { %>
+
+    <p class="text-gray-600">No BMI records found.</p>
+
+  <% } else { %>
+
+    <div class="space-y-4">
+
+      <% records.forEach((r) => { %>
+
+        <div class="border p-4 rounded shadow bg-green-50">
+          <p class="text-sm text-gray-600">
+            📅 <%= r.createdAt.toDateString() %>
+          </p>
+
+          <p class="text-sm">
+            Height: <strong><%= r.height %> cm</strong> | 
+            Weight: <strong><%= r.weight %> kg</strong>
+          </p>
+
+          <p class="text-sm font-semibold text-green-700">
+            BMI: <%= r.bmi %> — <%= r.status %>
+          </p>
+        </div>
+
+      <% }) %>
+
+    </div>
+
+  <% } %>
+  <div class="mt-8">
+    <a href="/dashboard" class="btn btn-ghost btn-sm" style="color:var(--gray-600);">← Back to Dashboard</a>
+
+  <div class="mt-8 text-right">
+    <a href="/dashboard" class="text-green-600 hover:underline">
+      ← Back to Dashboard
+    </a>
+  </div>
+
+</main>

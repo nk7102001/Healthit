@@ -1,0 +1,57 @@
+<% layout("layouts/boilerplate") %>
+<% title = "AI Plan History - Healthit" %>
+
+<div class="page-hero">
+  <div class="max-w-5xl mx-auto">
+    <h1 class="page-hero-title">🧠 AI Plan History</h1>
+    <p class="page-hero-subtitle">All your personalized AI-generated health plans</p>
+  </div>
+</div>
+
+<main class="flex-1 px-6 py-12 w-full max-w-5xl mx-auto">
+
+  <% if (plans.length === 0) { %>
+    <div class="text-center py-16">
+      <div style="font-size:3rem;margin-bottom:1rem;">🤖</div>
+      <h3 style="font-family:'Sora',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:.5rem;">No plans yet</h3>
+      <p style="color:var(--gray-600);margin-bottom:1.5rem;">Generate your first AI-powered diet and workout plan.</p>
+      <a href="/ai-plan" class="btn btn-primary">Generate Plan →</a>
+    </div>
+  <% } else { %>
+
+    <div class="flex items-center justify-between mb-6">
+      <h2 style="font-family:'Sora',sans-serif;font-weight:700;"><%= plans.length %> Plan<%= plans.length > 1 ? 's' : '' %> Saved</h2>
+      <a href="/ai-plan" class="btn btn-primary btn-sm">+ New Plan</a>
+    </div>
+
+    <div class="space-y-6">
+      <% plans.forEach((plan, i) => { %>
+        <div class="record-card" style="animation-delay:<%= i * 0.1 %>s;padding-left:1.75rem;">
+          <div class="flex justify-between items-start mb-3 flex-wrap gap-3">
+            <div>
+              <p style="font-size:.8rem;color:var(--gray-600);margin-bottom:.4rem;">📅 <%= plan.createdAt.toDateString() %></p>
+              <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+                <span style="background:var(--green-50);color:var(--green-700);padding:.2rem .65rem;border-radius:99px;font-size:.78rem;font-weight:600;border:1px solid var(--green-200);">🎯 <%= plan.goal %></span>
+                <span style="background:#eff6ff;color:#3b82f6;padding:.2rem .65rem;border-radius:99px;font-size:.78rem;font-weight:600;border:1px solid #bfdbfe;">Age: <%= plan.age %></span>
+                <span style="background:#fdf4ff;color:#7c3aed;padding:.2rem .65rem;border-radius:99px;font-size:.78rem;font-weight:600;border:1px solid #e9d5ff;"><%= plan.gender %></span>
+                <span style="background:#fff7ed;color:#c2410c;padding:.2rem .65rem;border-radius:99px;font-size:.78rem;font-weight:600;border:1px solid #fed7aa;">⚡ <%= plan.activity %></span>
+                <span style="background:#fefce8;color:#a16207;padding:.2rem .65rem;border-radius:99px;font-size:.78rem;font-weight:600;border:1px solid #fef08a;">🥗 <%= plan.diet %></span>
+              </div>
+            </div>
+            <form action="/plans/delete/<%= plan._id %>" method="POST" onsubmit="return confirm('Delete this plan?');">
+              <button type="submit" class="btn btn-danger btn-sm">🗑️ Delete</button>
+            </form>
+          </div>
+
+          <div class="plan-output" style="padding:1.25rem;margin-top:.5rem;font-size:.88rem;max-height:300px;overflow-y:auto;"><%= plan.generatedPlan %></div>
+        </div>
+      <% }) %>
+    </div>
+
+  <% } %>
+
+  <div class="mt-8">
+    <a href="/dashboard" class="btn btn-ghost btn-sm" style="color:var(--gray-600);">← Back to Dashboard</a>
+  </div>
+
+</main>

@@ -1,0 +1,61 @@
+<% layout("layouts/boilerplate") %>
+<% title = "Exercise Library - Healthit" %>
+
+<div class="page-hero">
+  <div class="max-w-6xl mx-auto">
+    <h1 class="page-hero-title">🏋️ Workout Library</h1>
+    <p class="page-hero-subtitle">Guided home exercises — no gym needed. Filter by body part.</p>
+  </div>
+</div>
+
+<main class="flex-1 max-w-6xl mx-auto px-4 py-12 w-full">
+
+  <!-- Filter Bar -->
+  <div class="flex flex-wrap gap-3 mb-10" id="filterBtns">
+    <button class="filter-btn active" data-filter="All">All</button>
+    <button class="filter-btn" data-filter="Upper Body">Upper Body</button>
+    <button class="filter-btn" data-filter="Lower Body">Lower Body</button>
+    <button class="filter-btn" data-filter="Core">Core</button>
+    <button class="filter-btn" data-filter="Cardio">Cardio</button>
+  </div>
+
+  <style>
+    .filter-btn {
+      padding: .45rem 1.1rem;
+      border-radius: 99px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .875rem;
+      font-weight: 600;
+      border: 1.5px solid var(--green-200);
+      background: white;
+      color: var(--gray-700);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--green-600);
+      color: white;
+      border-color: var(--green-600);
+    }
+  </style>
+
+  <!-- Exercise Grid -->
+  <div id="exerciseList" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+
+</main>
+
+<script src="/js/exercises.js"></script>
+<script>
+  // Filter button logic
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.getAttribute('data-filter');
+      document.querySelectorAll('#exerciseList .exercise-card').forEach(card => {
+        const part = card.getAttribute('data-part');
+        card.style.display = (filter === 'All' || part === filter) ? 'block' : 'none';
+      });
+    });
+  });
+</script>

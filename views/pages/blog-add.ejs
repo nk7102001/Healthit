@@ -1,0 +1,88 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="page-hero">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="page-hero-title">✍️ Add New Blog</h1>
+    <p class="page-hero-subtitle">Write a new health article for your readers</p>
+  </div>
+</div>
+
+<main class="flex-1 px-6 py-12 max-w-3xl mx-auto w-full">
+  <div class="card p-8 anim-scale-in">
+    <% if (message) { %>
+      <div class="alert alert-success mb-5">✅ <%= message %></div>
+    <% } %>
+    <form method="POST" action="/blog/add" class="space-y-5">
+      <div class="form-group">
+        <label class="form-label">Blog Title</label>
+        <input type="text" name="title" required class="form-input" placeholder="Enter a compelling title..." />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Slug (URL identifier)</label>
+        <input type="text" name="slug" required pattern="^(?!add$).+" title="Slug cannot be 'add'" class="form-input" placeholder="e.g., healthy-morning-routine" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Summary</label>
+        <textarea name="summary" rows="2" required class="form-textarea" placeholder="Short description shown on blog cards..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Image Path</label>
+        <input type="text" name="image" value="/images/blog1.jpg" class="form-input" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Full Content</label>
+        <textarea name="content" rows="10" required class="form-textarea" placeholder="Write your full article here..."></textarea>
+      </div>
+      <div class="flex gap-3">
+        <button type="submit" class="btn btn-primary flex-1">➕ Publish Blog</button>
+        <a href="/blog" class="btn btn-ghost" style="color:var(--gray-600);">Cancel</a>
+      </div>
+    </form>
+  </div>
+</main>
+
+<div class="bg-white px-6 py-10 text-[#1a1a1a] pt-24">
+  <div class="max-w-3xl mx-auto">
+    <h1 class="text-3xl font-bold text-green-600 mb-6">✍️ Add New Blog</h1>
+
+    <% if (message) { %>
+      <div class="mb-4 text-center font-semibold text-green-700"><%= message %></div>
+    <% } %>
+
+    <form method="POST" action="/blog/add" class="space-y-4">
+      <div>
+        <label class="block font-medium">Title</label>
+        <input type="text" name="title" required class="w-full border px-4 py-2 rounded" />
+      </div>
+
+      <div>
+        <label class="block font-medium">Slug (URL text)</label>
+        <input type="text" name="slug" required pattern="^(?!add$).+" title="Slug cannot be 'add'" />
+      </div>
+
+      <div>
+        <label class="block font-medium">Summary</label>
+        <textarea name="summary" rows="2" required class="w-full border px-4 py-2 rounded"></textarea>
+      </div>
+
+      <div>
+        <label class="block font-medium">Image Path</label>
+        <input type="text" name="image" value="/images/blog1.jpg" class="w-full border px-4 py-2 rounded" />
+      </div>
+
+      <div>
+        <label class="block font-medium">Full Content</label>
+        <textarea name="content" rows="8" required class="w-full border px-4 py-2 rounded"></textarea>
+      </div>
+
+      <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
+        ➕ Add Blog
+      </button>
+    </form>
+
+    <div class="mt-6 text-right">
+      <a href="/blog" class="text-green-600 hover:underline">← Back to Blog</a>
+    </div>
+  </div>
+</div>
+

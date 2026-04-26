@@ -1,0 +1,78 @@
+<% layout("layouts/boilerplate") %>
+<% title = "BMI Calculator - Healthit" %>
+
+<div class="page-hero">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="page-hero-title">📏 BMI Calculator</h1>
+    <p class="page-hero-subtitle">Know your Body Mass Index and understand your health status</p>
+  </div>
+</div>
+
+<section class="py-12 px-4 max-w-xl mx-auto">
+
+  <div class="card p-8 anim-scale-in">
+    <h2 style="font-family:'Sora',sans-serif;font-weight:700;font-size:1.2rem;margin-bottom:1.5rem;color:var(--dark);">Enter Your Measurements</h2>
+
+    <form action="/bmi" method="POST" class="space-y-5">
+      <div class="form-group">
+        <label class="form-label">Height (cm)</label>
+        <input type="number" name="height" id="height" required class="form-input" placeholder="e.g., 170" min="50" max="250" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Weight (kg)</label>
+        <input type="number" name="weight" id="weight" required class="form-input" placeholder="e.g., 60" min="10" max="300" />
+      </div>
+      <button type="submit" class="btn btn-primary w-full" style="margin-top:.5rem;padding:.85rem;">Calculate BMI →</button>
+    </form>
+  </div>
+
+  <% if (bmi && status) { %>
+    <div class="bmi-result-card mt-8">
+      <div style="font-size:2rem;margin-bottom:.5rem;">
+        <% if (status === 'Underweight') { %> 😟
+        <% } else if (status === 'Normal weight') { %> 😊
+        <% } else if (status === 'Overweight') { %> 😐
+        <% } else { %> ⚠️ <% } %>
+      </div>
+      <div class="bmi-value"><%= bmi %></div>
+      <div style="font-size:.9rem;color:var(--gray-600);margin-top:.25rem;">Your BMI Score</div>
+
+      <% 
+        let badgeColor = '#22c55e'; let badgeBg = '#f0fdf4'; let badgeBorder = '#bbf7d0';
+        if (status === 'Underweight') { badgeColor='#3b82f6'; badgeBg='#eff6ff'; badgeBorder='#bfdbfe'; }
+        else if (status === 'Overweight') { badgeColor='#f59e0b'; badgeBg='#fffbeb'; badgeBorder='#fde68a'; }
+        else if (status === 'Obese') { badgeColor='#ef4444'; badgeBg='#fef2f2'; badgeBorder='#fecaca'; }
+        let barPct = Math.min(Math.max(((bmi - 10) / 30) * 100, 5), 95);
+      %>
+
+      <div style="display:inline-block;padding:.4rem 1.2rem;border-radius:99px;font-weight:700;font-size:.95rem;margin-top:.75rem;background:<%= badgeBg %>;color:<%= badgeColor %>;border:1px solid <%= badgeBorder %>">
+        <%= status %>
+      </div>
+
+      <div class="bmi-bar-wrap">
+        <div class="bmi-bar" data-width="<%= barPct %>%" style="width:0%"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--gray-600);">
+        <span>Underweight</span><span>Normal</span><span>Overweight</span><span>Obese</span>
+      </div>
+
+      <% if (typeof user !== 'undefined' && user) { %>
+        <div class="alert alert-success mt-4" style="justify-content:center;">✅ BMI saved to your history</div>
+      <% } %>
+
+      <a href="/bmi/history" class="btn btn-outline btn-sm" style="margin-top:1.25rem;">View BMI History →</a>
+    </div>
+  <% } %>
+
+  <!-- BMI Info Table -->
+  <div class="card p-6 mt-8 reveal">
+    <h3 style="font-family:'Sora',sans-serif;font-weight:700;margin-bottom:1rem;color:var(--dark);">BMI Classification</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
+      <div style="padding:.65rem 1rem;background:#eff6ff;border-radius:var(--radius-sm);font-size:.875rem;color:#1d4ed8;font-weight:600;">Below 18.5 — Underweight</div>
+      <div style="padding:.65rem 1rem;background:var(--green-50);border-radius:var(--radius-sm);font-size:.875rem;color:var(--green-700);font-weight:600;">18.5 – 24.9 — Normal</div>
+      <div style="padding:.65rem 1rem;background:#fffbeb;border-radius:var(--radius-sm);font-size:.875rem;color:#b45309;font-weight:600;">25 – 29.9 — Overweight</div>
+      <div style="padding:.65rem 1rem;background:#fef2f2;border-radius:var(--radius-sm);font-size:.875rem;color:#dc2626;font-weight:600;">30 & above — Obese</div>
+    </div>
+  </div>
+
+</section>

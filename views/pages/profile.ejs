@@ -1,0 +1,57 @@
+<% layout("layouts/boilerplate") %>
+<% title = "Your Profile - Healthit" %>
+
+<div class="page-hero">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="page-hero-title">👤 My Profile</h1>
+    <p class="page-hero-subtitle">View and manage your account details</p>
+  </div>
+</div>
+
+<main class="flex-1 px-6 py-12 max-w-3xl mx-auto w-full">
+
+  <div class="card p-8 anim-scale-in">
+
+    <!-- Profile Header -->
+    <div class="flex items-center gap-5 mb-8 pb-6" style="border-bottom:1px solid var(--green-100);">
+      <div class="profile-avatar"><%= user.name.charAt(0).toUpperCase() %></div>
+      <div>
+        <h2 style="font-family:'Sora',sans-serif;font-weight:800;font-size:1.4rem;color:var(--dark);"><%= user.name %></h2>
+        <p style="color:var(--gray-600);font-size:.9rem;"><%= user.email %></p>
+      </div>
+      <div style="margin-left:auto;display:flex;flex-direction:column;gap:.5rem;text-align:right;">
+        <a href="/profile/edit" class="btn btn-outline btn-sm">✏️ Edit Profile</a>
+        <a href="/profile/password" class="btn btn-ghost btn-sm" style="color:var(--gray-600);">🔐 Change Password</a>
+      </div>
+    </div>
+
+    <!-- Profile Info -->
+    <div>
+      <div class="profile-info-row">
+        <span class="profile-info-label">Full Name</span>
+        <span class="profile-info-value"><%= user.name %></span>
+      </div>
+      <div class="profile-info-row">
+        <span class="profile-info-label">Email</span>
+        <span class="profile-info-value"><%= user.email %></span>
+      </div>
+      <div class="profile-info-row">
+        <span class="profile-info-label">Member Since</span>
+        <span class="profile-info-value"><%= user.createdAt ? user.createdAt.toDateString() : 'N/A' %></span>
+      </div>
+      <div class="profile-info-row">
+        <span class="profile-info-label">Account Type</span>
+        <span style="display:inline-flex;align-items:center;gap:.4rem;font-size:.875rem;font-weight:600;padding:.25rem .85rem;border-radius:99px;<% if(user.isAdmin){ %>background:var(--green-100);color:var(--green-700);<% } else { %>background:var(--gray-100);color:var(--gray-600);<% } %>">
+          <% if(user.isAdmin){ %> 👑 Admin <% } else { %> 🙋 Member <% } %>
+        </span>
+      </div>
+    </div>
+
+    <div class="mt-8 flex justify-between items-center">
+      <a href="/dashboard" class="btn btn-ghost btn-sm" style="color:var(--gray-600);">← Dashboard</a>
+      <a href="/bmi" class="btn btn-primary btn-sm">Check BMI →</a>
+    </div>
+
+  </div>
+
+</main>

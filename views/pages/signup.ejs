@@ -1,0 +1,36 @@
+<% layout("layouts/boilerplate") %>
+<% title = "Sign Up - Healthit" %>
+
+<main class="flex-1 flex items-center justify-center px-4 py-24" style="background:linear-gradient(135deg,#f0fdf4,#ffffff,#f0fdfa);">
+  <div class="auth-card">
+    <div class="auth-brand">
+      <div class="auth-logo">💚 Health<span>it</span></div>
+      <p>Create your free account today</p>
+    </div>
+
+    <% if (typeof message !== "undefined" && message) { %>
+      <div class="alert alert-error mb-5">⚠️ <%= message %></div>
+    <% } %>
+
+    <form action="/signup" method="POST" class="space-y-4">
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input type="text" name="name" required class="form-input" placeholder="Your full name" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" name="email" required class="form-input" placeholder="you@example.com" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" name="password" required class="form-input" placeholder="Create a strong password" />
+      </div>
+      <button type="submit" class="btn btn-primary w-full" style="margin-top:.5rem;">Create Account →</button>
+    </form>
+
+    <div class="text-center mt-5" style="font-size:.9rem;color:var(--gray-600);">
+      Already have an account?
+      <a href="/login" style="color:var(--green-600);font-weight:600;text-decoration:none;"> Sign In</a>
+    </div>
+  </div>
+</main>

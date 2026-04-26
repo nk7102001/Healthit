@@ -1,0 +1,65 @@
+<% layout("layouts/boilerplate") %>
+<% title = "Nearby Hospitals - Healthit" %>
+
+<div class="page-hero">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="page-hero-title">🏥 Find Nearby Services</h1>
+    <p class="page-hero-subtitle">Locate hospitals and medical stores near you</p>
+  </div>
+</div>
+
+<main class="flex-1 px-4 py-12 max-w-4xl mx-auto w-full">
+
+  <!-- Search Form -->
+  <div class="card p-6 mb-10 anim-scale-in">
+    <form action="/nearby" method="POST" class="flex flex-col sm:flex-row gap-4">
+      <div class="flex-1">
+        <input type="text" name="location" placeholder="Enter your city or location..." required class="form-input" />
+      </div>
+      <select name="type" class="form-select" style="width:auto;min-width:180px;">
+        <option value="hospital">🏥 Hospital</option>
+        <option value="pharmacy">💊 Medical Store</option>
+      </select>
+      <button type="submit" onclick="showSpinner()" class="btn btn-primary" style="white-space:nowrap;">Search →</button>
+    </form>
+  </div>
+
+  <!-- Spinner -->
+  <div id="loadingSpinner" style="display:none;text-align:center;padding:2rem;">
+    <div style="width:40px;height:40px;border:3px solid var(--green-100);border-top:3px solid var(--green-500);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 1rem;"></div>
+    <p style="color:var(--gray-600);font-size:.9rem;">Finding nearby services...</p>
+  </div>
+
+  <!-- Results -->
+  <% if (hospitals && hospitals.length > 0) { %>
+    <div>
+      <h2 style="font-family:'Sora',sans-serif;font-weight:700;font-size:1.1rem;margin-bottom:1.25rem;color:var(--dark);">
+        Found <%= hospitals.length %> nearby result<%= hospitals.length > 1 ? 's' : '' %>
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <% hospitals.forEach((h, i) => { %>
+          <div class="nearby-card reveal" style="animation-delay:<%= i * 0.08 %>s">
+            <div class="nearby-icon-wrap">🏥</div>
+            <div>
+              <h3 style="font-weight:700;font-size:.95rem;color:var(--dark);margin-bottom:.25rem;"><%= h.name %></h3>
+              <p style="font-size:.85rem;color:var(--gray-600);"><%= h.address %></p>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  <% } else if (hospitals) { %>
+    <div class="text-center py-12">
+      <div style="font-size:2.5rem;margin-bottom:1rem;">😕</div>
+      <h3 style="font-family:'Sora',sans-serif;font-weight:700;margin-bottom:.5rem;">No results found</h3>
+      <p style="color:var(--gray-600);">Try a different city or location name.</p>
+    </div>
+  <% } %>
+
+</main>
+
+<script>
+function showSpinner() {
+  document.getElementById('loadingSpinner').style.display = 'block';
+}
+</script>

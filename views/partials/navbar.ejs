@@ -1,0 +1,56 @@
+<% const currentUser = (typeof user === "undefined") ? null : user; %>
+
+<nav class="hlt-nav w-full">
+  <div class="nav-inner">
+
+    <a href="/" class="nav-logo">
+      💚 Health<span>it</span>
+      <span class="logo-dot"></span>
+    </a>
+
+    <!-- Desktop Links -->
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/features">Features</a></li>
+      <li><a href="/ai-plan">AI Plan</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <% if (currentUser) { %>
+        <li><a href="/dashboard">Dashboard</a></li>
+      <% } %>
+    </ul>
+
+    <!-- Desktop Actions -->
+    <div class="nav-actions">
+      <% if (currentUser) { %>
+        <a href="/logout" class="btn btn-outline btn-sm">Logout</a>
+      <% } else { %>
+        <a href="/login" class="btn btn-ghost btn-sm">Login</a>
+        <a href="/signup" class="btn btn-primary btn-sm">Sign Up</a>
+      <% } %>
+    </div>
+
+    <!-- Hamburger (Mobile only) -->
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu">
+    <a href="/">Home</a>
+    <a href="/features">Features</a>
+    <a href="/ai-plan">AI Plan</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
+    <% if (currentUser) { %>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/logout" style="color:var(--green-600);font-weight:600;">Logout</a>
+    <% } else { %>
+      <a href="/login" style="color:var(--green-600);">Login</a>
+      <a href="/signup" style="color:var(--green-600);font-weight:600;">Sign Up →</a>
+    <% } %>
+  </div>
+</nav>

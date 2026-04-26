@@ -1,0 +1,67 @@
+<% layout("layouts/boilerplate") %>
+<% title = "Contact Us - Healthit" %>
+
+<div class="page-hero">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="page-hero-title">📬 Contact Us</h1>
+    <p class="page-hero-subtitle">Have a question or feedback? We'd love to hear from you.</p>
+  </div>
+</div>
+
+<main class="flex-1 px-4 py-16">
+  <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+
+    <!-- Left Info -->
+    <div class="space-y-6 reveal">
+      <h2 style="font-family:'Sora',sans-serif;font-size:1.6rem;font-weight:800;color:var(--dark);">Get in Touch</h2>
+      <p style="color:var(--gray-600);line-height:1.7;">Whether you have a question about features, need help with your account, or want to give us feedback — we're here to help.</p>
+      <div class="space-y-4">
+        <div class="nearby-card">
+          <div class="nearby-icon-wrap">📧</div>
+          <div>
+            <div style="font-weight:600;font-size:.9rem;margin-bottom:.2rem;">Email Us</div>
+            <div style="color:var(--gray-600);font-size:.875rem;">support@healthit.com</div>
+          </div>
+        </div>
+        <div class="nearby-card">
+          <div class="nearby-icon-wrap">🕐</div>
+          <div>
+            <div style="font-weight:600;font-size:.9rem;margin-bottom:.2rem;">Response Time</div>
+            <div style="color:var(--gray-600);font-size:.875rem;">We typically reply within 24 hours</div>
+          </div>
+        </div>
+        <div class="nearby-card">
+          <div class="nearby-icon-wrap">💬</div>
+          <div>
+            <div style="font-weight:600;font-size:.9rem;margin-bottom:.2rem;">Feedback Welcome</div>
+            <div style="color:var(--gray-600);font-size:.875rem;">Help us improve Healthit for everyone</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Form -->
+    <div class="card p-8 reveal reveal-delay-2">
+      <% if (message) { %>
+        <div class="alert alert-success mb-5">✅ <%= message %></div>
+      <% } %>
+
+      <form method="POST" action="/contact" class="space-y-5">
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input type="text" name="name" required class="form-input" placeholder="Full name" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" name="email" required class="form-input" placeholder="you@example.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea name="message" rows="5" required class="form-textarea" placeholder="Write your message here..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary w-full">Send Message →</button>
+      </form>
+    </div>
+
+  </div>
+</main>

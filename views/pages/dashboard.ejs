@@ -1,0 +1,92 @@
+<% layout("layouts/boilerplate") %>
+<% title = "Dashboard - Healthit" %>
+
+<div class="page-hero">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex items-center gap-4">
+      <div class="profile-avatar" style="width:56px;height:56px;font-size:1.4rem;">
+        <%= user.name.charAt(0).toUpperCase() %>
+      </div>
+      <div>
+        <h1 class="page-hero-title">Welcome back, <%= user.name %>! 👋</h1>
+        <p class="page-hero-subtitle">Here's your health overview for today</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="flex-1 px-6 py-12 max-w-6xl mx-auto w-full">
+
+  <!-- Quick Stats -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+    <div class="stat-card reveal reveal-delay-1">
+      <div style="font-size:1.75rem;margin-bottom:.5rem;">📏</div>
+      <div class="stat-label">BMI Tracker</div>
+      <div style="margin-top:.25rem;font-size:.8rem;color:var(--green-600);font-weight:600;">Active</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-2">
+      <div style="font-size:1.75rem;margin-bottom:.5rem;">🤖</div>
+      <div class="stat-label">AI Plans</div>
+      <div style="margin-top:.25rem;font-size:.8rem;color:var(--green-600);font-weight:600;">Generated</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-3">
+      <div style="font-size:1.75rem;margin-bottom:.5rem;">🏋️</div>
+      <div class="stat-label">Workouts</div>
+      <div style="margin-top:.25rem;font-size:.8rem;color:var(--green-600);font-weight:600;">Available</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-4">
+      <div style="font-size:1.75rem;margin-bottom:.5rem;">🏥</div>
+      <div class="stat-label">Hospitals</div>
+      <div style="margin-top:.25rem;font-size:.8rem;color:var(--green-600);font-weight:600;">Nearby</div>
+    </div>
+  </div>
+
+  <!-- Main Cards -->
+  <h2 style="font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:1.25rem;color:var(--dark);">Quick Access</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+    <a href="/profile" class="dash-card reveal reveal-delay-1">
+      <div class="dash-card-icon">👤</div>
+      <h3>My Profile</h3>
+      <p>View and update your personal details, name, and email</p>
+      <div class="dash-card-arrow">→</div>
+    </a>
+
+    <a href="/bmi/history" class="dash-card reveal reveal-delay-2">
+      <div class="dash-card-icon">📊</div>
+      <h3>BMI History</h3>
+      <p>Track your BMI records over time and monitor progress</p>
+      <div class="dash-card-arrow">→</div>
+    </a>
+
+    <a href="/plans" class="dash-card reveal reveal-delay-3">
+      <div class="dash-card-icon">🧠</div>
+      <h3>AI Plan History</h3>
+      <p>View all your AI-generated diet and workout plans</p>
+      <div class="dash-card-arrow">→</div>
+    </a>
+
+    <a href="/bmi" class="dash-card reveal reveal-delay-2">
+      <div class="dash-card-icon">📏</div>
+      <h3>Calculate BMI</h3>
+      <p>Check your current Body Mass Index and get health status</p>
+      <div class="dash-card-arrow">→</div>
+    </a>
+
+    <a href="/ai-plan" class="dash-card reveal reveal-delay-3">
+      <div class="dash-card-icon">🤖</div>
+      <h3>Generate AI Plan</h3>
+      <p>Create a new personalized diet and workout plan with AI</p>
+      <div class="dash-card-arrow">→</div>
+    </a>
+
+    <a href="/exercises" class="dash-card reveal reveal-delay-4">
+      <div class="dash-card-icon">🏋️</div>
+      <h3>Exercises</h3>
+      <p>Browse guided home workouts for every fitness level</p>
+      <div class="dash-card-arrow">→</div>
+    </a>
+
+  </div>
+
+</main>

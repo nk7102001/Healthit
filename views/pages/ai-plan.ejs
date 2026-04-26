@@ -1,0 +1,92 @@
+<% layout("layouts/boilerplate") %>
+<% title = "AI Plan Generator - Healthit" %>
+
+<!-- Spinner Overlay -->
+<div id="spinnerOverlay" style="display:none;">
+  <div class="spinner"></div>
+  <p class="spinner-text">✨ Generating your personalized plan...</p>
+</div>
+
+<div class="page-hero">
+  <div class="max-w-4xl mx-auto">
+    <div class="section-badge" style="background:rgba(34,197,94,0.15);border-color:rgba(34,197,94,0.3);">🤖 AI-Powered</div>
+    <h1 class="page-hero-title mt-2">AI Diet & Workout Plan</h1>
+    <p class="page-hero-subtitle">Tell us about yourself and get a personalized health plan in seconds</p>
+  </div>
+</div>
+
+<main class="flex-1 flex flex-col items-center px-4 py-14">
+
+  <!-- Form -->
+  <div class="card p-8 w-full max-w-xl print-hide anim-scale-in">
+    <form action="/ai-plan" method="POST" class="space-y-5" onsubmit="showSpinner()">
+
+      <div class="form-group">
+        <label class="form-label">🎯 Your Goal</label>
+        <select name="goal" required class="form-select">
+          <option value="">— Select Goal —</option>
+          <option value="lose">Weight Loss</option>
+          <option value="gain">Weight Gain</option>
+          <option value="maintain">Maintain Weight</option>
+        </select>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div class="form-group">
+          <label class="form-label">🎂 Age</label>
+          <input type="number" name="age" required class="form-input" placeholder="e.g., 25" min="10" max="100" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">⚧ Gender</label>
+          <div style="display:flex;gap:1.5rem;align-items:center;padding:.75rem 0;">
+            <label style="display:flex;align-items:center;gap:.4rem;font-size:.9rem;cursor:pointer;">
+              <input type="radio" name="gender" value="male" required style="accent-color:var(--green-600);" /> Male
+            </label>
+            <label style="display:flex;align-items:center;gap:.4rem;font-size:.9rem;cursor:pointer;">
+              <input type="radio" name="gender" value="female" style="accent-color:var(--green-600);" /> Female
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">⚡ Activity Level</label>
+        <select name="activity" required class="form-select">
+          <option value="">— Select Activity Level —</option>
+          <option value="low">Low (Sedentary lifestyle)</option>
+          <option value="medium">Medium (Light exercise)</option>
+          <option value="high">High (Active / Sports)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">🥗 Diet Preference</label>
+        <select name="diet" required class="form-select">
+          <option value="">— Select Diet —</option>
+          <option value="veg">Vegetarian</option>
+          <option value="vegan">Vegan</option>
+          <option value="eggetarian">Eggetarian</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-full btn-lg" style="margin-top:.5rem;">
+        🚀 Generate My Plan
+      </button>
+    </form>
+  </div>
+
+  <!-- Result -->
+  <% if (typeof plan !== "undefined" && plan) { %>
+    <div class="w-full max-w-xl mt-10">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+        <h2 style="font-family:'Sora',sans-serif;font-weight:800;font-size:1.3rem;color:var(--dark);">✨ Your AI-Generated Plan</h2>
+        <button onclick="window.print()" class="btn btn-outline btn-sm print-hide">🖨️ Print</button>
+      </div>
+      <div class="plan-output"><%= plan %></div>
+      <div class="text-center mt-6 print-hide">
+        <a href="/plans" class="btn btn-ghost btn-sm">View All Plans →</a>
+      </div>
+    </div>
+  <% } %>
+
+</main>

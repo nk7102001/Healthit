@@ -1,0 +1,50 @@
+<% layout("layouts/boilerplate") %>
+
+
+<div class="page-hero">
+  <div class="max-w-3xl mx-auto">
+    <a href="/blog" style="color:rgba(255,255,255,0.6);font-size:.875rem;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;margin-bottom:1rem;">← Back to Blog</a>
+    <h1 class="page-hero-title"><%= blog.title %></h1>
+  </div>
+</div>
+
+<article class="px-6 py-12 max-w-3xl mx-auto anim-fade-up">
+
+  <div style="border-radius:var(--radius-lg);overflow:hidden;margin-bottom:2.5rem;box-shadow:var(--shadow-lg);">
+    <img src="<%= blog.image %>" alt="<%= blog.title %>" style="width:100%;height:360px;object-fit:cover;display:block;" />
+  </div>
+
+  <div style="background:linear-gradient(135deg,var(--green-50),white);border:1px solid var(--green-100);border-radius:var(--radius-xl);padding:2.5rem;">
+    <p style="font-family:'DM Sans',sans-serif;font-size:1.05rem;line-height:1.9;color:#374151;white-space:pre-wrap;"><%= blog.content %></p>
+  </div>
+
+  <div class="flex items-center justify-between mt-8 pt-6" style="border-top:1px solid var(--green-100);">
+    <a href="/blog" class="btn btn-outline btn-sm">← All Articles</a>
+    <span style="font-size:.825rem;color:var(--gray-600);">Healthit Blog</span>
+  </div>
+
+</article>
+
+<div class="bg-white px-6 py-10 text-[#1a1a1a] pt-24">
+  <div class="max-w-3xl mx-auto">
+    
+    <h1 class="text-3xl font-bold text-green-600 mb-4"><%= blog.title %></h1>
+
+    <img 
+      src="<%= blog.image %>" 
+      alt="Blog Image" 
+      class="w-full h-60 object-cover rounded mb-6"
+    />
+
+    <p class="text-gray-800 text-base leading-relaxed whitespace-pre-wrap">
+      <%= blog.content %>
+    </p>
+
+    <div class="mt-8 text-right">
+      <a href="/blog" class="text-green-600 hover:underline">
+        ← Back to Blog
+      </a>
+    </div>
+
+  </div>
+</div>

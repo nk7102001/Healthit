@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= typeof title !== "undefined" ? title : "Healthit - Your Fitness Partner" %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body class="bg-white text-[#1a1a1a] flex flex-col min-h-screen">
+
+  <!-- Navbar -->
+  <%- include("../partials/navbar") %>
+
+  <!-- Page Body -->
+  <main class="flex-grow">
+    <%- body %>
+  </main>
+
+  <!-- Footer -->
+  <%- include("../partials/footer") %>
+
+  <!-- Scroll to Top Button -->
+  <button id="scrollTopBtn" title="Back to top">↑</button>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

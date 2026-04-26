@@ -1,0 +1,78 @@
+<% layout("layouts/boilerplate") %>
+<% title = "Admin Dashboard - Healthit" %>
+
+<div class="max-w-6xl mx-auto px-6 py-12">
+  <h1 class="text-3xl font-bold mb-8" style="color:var(--dark);">🛠️ Admin Dashboard</h1>
+
+  <!-- Users Table -->
+  <div class="mb-12">
+    <h2 class="text-xl font-semibold mb-4" style="color:var(--green-600);">👥 All Users (<%= users.length %>)</h2>
+    <div class="overflow-x-auto rounded-xl shadow">
+      <table class="w-full text-sm border-collapse bg-white">
+        <thead style="background:var(--green-600);color:#fff;">
+          <tr>
+            <th class="px-4 py-3 text-left">#</th>
+            <th class="px-4 py-3 text-left">Name</th>
+            <th class="px-4 py-3 text-left">Email</th>
+            <th class="px-4 py-3 text-left">Admin</th>
+            <th class="px-4 py-3 text-left">Joined</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% users.forEach((u, i) => { %>
+          <tr class="border-b hover:bg-gray-50">
+            <td class="px-4 py-3"><%= i + 1 %></td>
+            <td class="px-4 py-3 font-medium"><%= u.name %></td>
+            <td class="px-4 py-3"><%= u.email %></td>
+            <td class="px-4 py-3">
+              <% if (u.isAdmin) { %>
+                <span style="color:var(--green-600);font-weight:600;">✅ Yes</span>
+              <% } else { %>
+                <span style="color:#9ca3af;">No</span>
+              <% } %>
+            </td>
+            <td class="px-4 py-3"><%= u.createdAt ? u.createdAt.toDateString() : '-' %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Blogs Table -->
+  <div>
+    <h2 class="text-xl font-semibold mb-4" style="color:var(--green-600);">📝 All Blogs (<%= blogs.length %>)</h2>
+    <div class="overflow-x-auto rounded-xl shadow">
+      <table class="w-full text-sm border-collapse bg-white">
+        <thead style="background:var(--green-600);color:#fff;">
+          <tr>
+            <th class="px-4 py-3 text-left">#</th>
+            <th class="px-4 py-3 text-left">Title</th>
+            <th class="px-4 py-3 text-left">Slug</th>
+            <th class="px-4 py-3 text-left">Created</th>
+            <th class="px-4 py-3 text-left">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% blogs.forEach((b, i) => { %>
+          <tr class="border-b hover:bg-gray-50">
+            <td class="px-4 py-3"><%= i + 1 %></td>
+            <td class="px-4 py-3 font-medium"><%= b.title %></td>
+            <td class="px-4 py-3 text-gray-500"><%= b.slug %></td>
+            <td class="px-4 py-3"><%= b.createdAt ? b.createdAt.toDateString() : '-' %></td>
+            <td class="px-4 py-3 flex gap-2">
+              <a href="/blog/edit/<%= b._id %>" class="btn btn-sm btn-outline">Edit</a>
+              <form action="/blog/delete/<%= b._id %>" method="POST" onsubmit="return confirm('Delete this blog?')">
+                <button type="submit" class="btn btn-sm" style="background:#ef4444;color:#fff;">Delete</button>
+              </form>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-4">
+      <a href="/blog/add" class="btn btn-primary">+ Add New Blog</a>
+    </div>
+  </div>
+</div>
