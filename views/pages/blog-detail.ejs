@@ -1,6 +1,5 @@
 <% layout("layouts/boilerplate") %>
 
-
 <div class="page-hero">
   <div class="max-w-3xl mx-auto">
     <a href="/blog" style="color:rgba(255,255,255,0.6);font-size:.875rem;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;margin-bottom:1rem;">← Back to Blog</a>
@@ -24,27 +23,3 @@
   </div>
 
 </article>
-
-<div class="bg-white px-6 py-10 text-[#1a1a1a] pt-24">
-  <div class="max-w-3xl mx-auto">
-    
-    <h1 class="text-3xl font-bold text-green-600 mb-4"><%= blog.title %></h1>
-
-    <img 
-      src="<%= blog.image %>" 
-      alt="Blog Image" 
-      class="w-full h-60 object-cover rounded mb-6"
-    />
-
-    <p class="text-gray-800 text-base leading-relaxed whitespace-pre-wrap">
-      <%= blog.content %>
-    </p>
-
-    <div class="mt-8 text-right">
-      <a href="/blog" class="text-green-600 hover:underline">
-        ← Back to Blog
-      </a>
-    </div>
-
-  </div>
-</div>

@@ -1,8 +1,3 @@
-
-# Healthit - Full Stack Health & Fitness Website
-
-=======
-
 # Healthit – Full Stack Health & Fitness Web Application
 
 Healthit is a full-stack health and fitness management web application
