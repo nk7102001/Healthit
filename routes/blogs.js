@@ -12,9 +12,7 @@ const getUserFromToken = require("../utils/getUserFromToken");
 
 
 
-// =============================
-// ✅ Admin Blog Routes (Fix Here)
-// =============================
+//  Admin Blog Routes
 router.get("/add", requireAuth, isAdmin, (req, res) => {
   res.render("pages/blog-add", {
     user: req.user,

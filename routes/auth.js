@@ -4,9 +4,8 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// ==========================
+
 // SHOW SIGNUP PAGE
-// ==========================
 router.get("/signup", (req, res) => {
   const token = req.cookies.token;
   let user = null;
@@ -20,9 +19,7 @@ router.get("/signup", (req, res) => {
   res.render("pages/signup", { user, message: null });
 });
 
-// ==========================
 // SHOW LOGIN PAGE
-// ==========================
 router.get("/login", (req, res) => {
   const token = req.cookies.token;
   let user = null;
@@ -36,9 +33,7 @@ router.get("/login", (req, res) => {
   res.render("pages/login", { user, message: null });
 });
 
-// ==========================
 // SIGNUP (POST)
-// ==========================
 router.post("/signup", async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -73,9 +68,7 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-// ==========================
 // LOGIN (POST)
-// ==========================
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -109,9 +102,7 @@ router.post("/login", async (req, res) => {
   res.redirect("/");
 });
 
-// ==========================
 // LOGOUT
-// ==========================
 router.get("/logout", (req, res) => {
   res.clearCookie("token");
   res.redirect("/");
